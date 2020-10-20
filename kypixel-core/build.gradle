@@ -1,0 +1,13 @@
+group 'net.lostillusion'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation project(':kypixel-api')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+}
