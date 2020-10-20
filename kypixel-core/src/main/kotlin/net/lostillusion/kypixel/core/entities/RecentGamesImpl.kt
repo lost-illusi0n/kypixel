@@ -6,7 +6,7 @@ import net.lostillusion.kypixel.api.entities.RecentGames
 import java.util.Date
 
 data class RecentGamesImpl(
-    override val games: Array<GameImpl>
+    override val games: Set<GameImpl>
 ): RecentGames, Entity<RecentGamesImpl>
 
 data class GameImpl(

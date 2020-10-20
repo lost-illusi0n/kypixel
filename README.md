@@ -21,7 +21,7 @@ repositories {
     }
 }
 
-dependencies { implementation 'net.lostillusion.kypixel:kypixel:1.0.0' }
+dependencies { implementation 'net.lostillusion.kypixel:kypixel:1.0.1' }
 ```
 
 ## Kotlin/Java Interop

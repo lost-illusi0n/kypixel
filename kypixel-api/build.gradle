@@ -1,6 +1,3 @@
-group 'net.lostillusion'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
