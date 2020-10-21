@@ -1,40 +1,14 @@
 plugins {
     id 'maven-publish'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
-}
-
-repositories {
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-    mavenCentral()
-}
-
-dependencies {
-    api project(':kypixel-api')
-    implementation project(':kypixel-core')
+    id 'org.jetbrains.dokka' version '1.4.10'
 }
 
 allprojects {
     apply plugin: 'org.jetbrains.kotlin.jvm'
-    apply plugin: 'maven-publish'
-    version '1.0.1'
+
+    version '1.0.1-SNAPSHOT'
     group 'net.lostillusion.kypixel'
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = 'https://maven.pkg.github.com/lost-illusi0n/lostorm'
-                credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("kypixel_user")
-                    password = project.findProperty("gpr.key") ?: System.getenv("kypixel_token")
-                }
-            }
-        }
-        publications {
-            create("gpr", MavenPublication) {
-                from(components["java"])
-            }
-        }
-    }
 
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
@@ -42,4 +16,40 @@ allprojects {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+}
+
+allprojects {
+    java {
+        task sourceJar(type: Jar) {
+            archiveClassifier = 'sources'
+            from sourceSets.main.allSource
+        }
+        withJavadocJar()
+    }
+}
+
+allprojects {
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            kypixel(MavenPublication) {
+                from components.java
+                artifact sourceJar
+            }
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    api project(':kypixel-api')
+    implementation project(':kypixel-core')
+    implementation 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.0'
+    implementation 'org.jetbrains.dokka:dokka-core:1.4.0'
+    implementation 'org.jetbrains.dokka:javadoc-plugin:1.4.10'
 }

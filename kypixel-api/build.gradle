@@ -1,4 +1,9 @@
+plugins {
+    id 'org.jetbrains.dokka'
+}
+
 repositories {
+    jcenter()
     mavenCentral()
 }
 

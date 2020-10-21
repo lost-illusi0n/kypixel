@@ -9,7 +9,7 @@ interface RecentGames {
     /**
      * A [Set] of recent [Game]s.
      */
-    val games: Set<out Game>
+    val games: Set<Game>
 }
 
 /**

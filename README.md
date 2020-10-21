@@ -11,17 +11,9 @@ Internally, Kypixel is composed of both an api and core module, however to prope
 
 #### Gradle
 ```groovy
-repositories {
-    maven {
-        url('https://maven.pkg.github.com/lost-illusi0n/kypixel')
-        credentials {
-            username = "username"
-            password = "privateToken"
-        }           
-    }
-}
+repositories { maven { url "https://jitpack.io" } }
 
-dependencies { implementation 'net.lostillusion.kypixel:kypixel:1.0.1' }
+dependencies { implementation 'com.github.lost-illusi0n.kypixel:kypixel:1.0.1' }
 ```
 
 ## Kotlin/Java Interop
