@@ -6,9 +6,6 @@ Kypixel is a modern library, developed in Kotlin, designed to be simple yet powe
 ## Dependency
 Internally, Kypixel is composed of both an api and core module, however to properly have these modules on your classpath, Kypixel provides a proper dependency for you to use.
 
-> *Note*:
-> This libray is published on the Github Package Repository which requires you to pass in proper credentials to download packages. See the appropriate [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-gradle-for-use-with-github-packages).
-
 #### Gradle
 ```groovy
 repositories { maven { url "https://jitpack.io" } }
