@@ -16,6 +16,9 @@ dependencies { implementation 'com.github.lost-illusi0n.kypixel:kypixel:1.0.1' }
 ## Kotlin/Java Interop
 This library is developed in Kotlin, however it has full Java support as well. All documented methods and classes should fundamentally be the same in both languages.
 
+## Ratelimiting
+The Hypixel API has a default ratelimit of 120 requests in 60 seconds (can be increased by contacting Hypixel). Kypixel takes in account this ratelimit and will properly throttle your requests to prevent hitting this limit. Kypixel figures this out by reading the ratelimit headers from Discord and the ``Ratelimit`` defined in your Kypixel intance.
+
 ## Examples
 #### Getting a Kypixel instance
 Getting a Kypixel instance is as simple as calling a method. ``Kypixel.fromToken`` will provide a Kypixel instance for you to use with the provided token.
