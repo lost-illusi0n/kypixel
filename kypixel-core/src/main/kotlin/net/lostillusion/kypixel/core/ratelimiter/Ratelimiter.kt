@@ -5,14 +5,13 @@ import net.lostillusion.kypixel.core.endpoints.EndpointRequest
 import okhttp3.Response
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 
 class Ratelimiter(private val threadPool: KypixelImpl.ThreadPool, private val limit: Ratelimit) {
     private val requests: LinkedBlockingQueue<Long> = LinkedBlockingQueue()
     private val queue: LinkedBlockingQueue<EndpointRequest<*>> = LinkedBlockingQueue()
 
     fun queueRequest(request: EndpointRequest<*>) {
-        var inQueue by Delegates.notNull<Boolean>()
+        var inQueue: Boolean
         synchronized(this) {
             inQueue = queue.peek() != null
             queue.add(request)

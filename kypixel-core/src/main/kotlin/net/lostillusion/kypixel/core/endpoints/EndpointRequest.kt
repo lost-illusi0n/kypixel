@@ -1,10 +1,3 @@
-@file:Suppress("SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection",
-    "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection",
-    "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection",
-    "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection",
-    "SpellCheckingInspection", "SpellCheckingInspection"
-)
-
 package net.lostillusion.kypixel.core.endpoints
 
 import com.fasterxml.jackson.databind.InjectableValues

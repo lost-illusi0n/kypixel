@@ -127,6 +127,14 @@ interface Kypixel {
     fun guildByName(guildName: String): CompletableFuture<out Guild>
 
     /**
+     * Sends a request to Mojang's api to retrieve a UUID by username.
+     *
+     * @param username the username of the Minecraft account you want to get the UUID of.
+     * @return the UUID.
+     */
+    fun uuidByName(username: String): CompletableFuture<UUID>
+
+    /**
      * Disconnect and shut down all threads related to Kypixel.
      */
     fun disconnect()
