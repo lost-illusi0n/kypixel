@@ -10,7 +10,7 @@ Internally, Kypixel is composed of both an api and core module, however to prope
 ```groovy
 repositories { maven { url "https://jitpack.io" } }
 
-dependencies { implementation 'com.github.lost-illusi0n.kypixel:kypixel:1.0.1' }
+dependencies { implementation 'com.github.lost-illusi0n.kypixel:kypixel:1.1.0' }
 ```
 
 ## Kotlin/Java Interop
@@ -23,13 +23,13 @@ The Hypixel API has a default ratelimit of 120 requests in 60 seconds (can be in
 #### Getting a Kypixel instance
 Getting a Kypixel instance is as simple as calling a method. ``Kypixel.fromToken`` will provide a Kypixel instance for you to use with the provided token.
 ```kotlin
-val kypixel = Kypixel.fromToken(UUID.fromString("private"))
+val kypixel = Kypixel.fromToken("private")
 ```
 #### Handling requests
 All requests made in Kypixel will be wrapped in a ``CompletableFuture``. You can handle these either synchronously or asynchronously.
 ##### Asynchronously
 ```kotlin
-val kypixel = Kypixel.fromToken(UUID.fromString("private"))
+val kypixel = Kypixel.fromToken("private")
 kypixel.watchdogStats().thenAccept { stats ->
     println(stats)
 }.exceptionally { handleException(it) }
@@ -37,7 +37,7 @@ kypixel.watchdogStats().thenAccept { stats ->
 Using ``CompletableFuture``s is quite simple, though it is important to handle exceptions(by adding ``#exceptionally``) as it will be silently swallowed otherwise.
 ##### Synchronously
 ```kotlin
-val kypixel = Kypixel.fromToken(UUID.fromString("private"))
+val kypixel = Kypixel.fromToken("private")
 println(kypixel.watchdogStats().join())
 ```
 It is important to note that handling these requests synchronously will block whatever thread it's running on. However, in small requests, blocking the current thread will most likely not cause problems. To run ``CompletableFuture``s synchronously, you need to add ``#join`` to the future you get from Kypixel. 
