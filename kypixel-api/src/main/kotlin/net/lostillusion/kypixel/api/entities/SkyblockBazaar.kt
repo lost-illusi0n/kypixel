@@ -11,7 +11,7 @@ interface SkyblockBazaar {
      */
     val lastUpdated: Date
     /**
-     * A [SkyblockProduct] mapped to it's [SkyblockProduct.profileId].
+     * A [SkyblockProduct.productId] mapped to it's [SkyblockProduct].
      */
     val products: Map<String, SkyblockProduct>
 }
