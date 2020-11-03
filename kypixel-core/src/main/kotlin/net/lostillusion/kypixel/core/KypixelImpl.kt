@@ -15,7 +15,7 @@ import java.util.*
 import java.util.concurrent.*
 import java.util.regex.Pattern
 
-class KypixelImpl(val token: UUID): Kypixel {
+class KypixelImpl(val token: String): Kypixel {
     class ThreadPool {
         val scheduledExecutor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
         val executor: ExecutorService = Executors.newSingleThreadExecutor()
@@ -34,20 +34,20 @@ class KypixelImpl(val token: UUID): Kypixel {
         this
     ).execute()
 
-    override fun status(uuid: UUID): CompletableFuture<out Session> = EndpointRequest(
+    override fun status(uuid: String): CompletableFuture<out Session> = EndpointRequest(
         HypixelEndpoint.StatusEndpoint,
         this
-    ).param("uuid", uuid.toString()).execute().thenApply { it.session }
+    ).param("uuid", uuid).execute().thenApply { it.session }
 
-    override fun recentGames(uuid: UUID): CompletableFuture<out RecentGames> = EndpointRequest(
+    override fun recentGames(uuid: String): CompletableFuture<out RecentGames> = EndpointRequest(
         HypixelEndpoint.RecentGamesEndpoint,
         this
-    ).param("uuid", uuid.toString()).execute()
+    ).param("uuid", uuid).execute()
 
-    override fun player(uuid: UUID): CompletableFuture<out Player> = EndpointRequest(
+    override fun player(uuid: String): CompletableFuture<out Player> = EndpointRequest(
         HypixelEndpoint.PlayerEndpoint,
         this
-    ).param("uuid", uuid.toString()).execute().thenApply { it.player }
+    ).param("uuid", uuid).execute().thenApply { it.player }
 
     override fun playerCount(): CompletableFuture<out PlayerCount> = EndpointRequest(
         HypixelEndpoint.PlayerCountEndpoint,
@@ -59,20 +59,20 @@ class KypixelImpl(val token: UUID): Kypixel {
         this
     ).execute()
 
-    override fun findGuild(name: String): CompletableFuture<out FindGuild> = EndpointRequest(
+    override fun findGuildByName(name: String): CompletableFuture<out FindGuild> = EndpointRequest(
         HypixelEndpoint.FindGuildEndpoint,
         this
     ).param("byName", name).execute()
 
-    override fun findGuild(uuid: UUID): CompletableFuture<out FindGuild> = EndpointRequest(
+    override fun findGuildByUuid(uuid: String): CompletableFuture<out FindGuild> = EndpointRequest(
         HypixelEndpoint.FindGuildEndpoint,
         this
-    ).param("byUuid", uuid.toString()).execute()
+    ).param("byUuid", uuid).execute()
 
-    override fun friends(uuid: UUID): CompletableFuture<out Friends> = EndpointRequest(
+    override fun friends(uuid: String): CompletableFuture<out Friends> = EndpointRequest(
         HypixelEndpoint.FriendsEndpoint,
         this
-    ).param("uuid", uuid.toString()).execute()
+    ).param("uuid", uuid).execute()
 
     override fun gameCounts(): CompletableFuture<out GameCounts> = EndpointRequest(
         HypixelEndpoint.GameCountsEndpoint,
@@ -84,20 +84,20 @@ class KypixelImpl(val token: UUID): Kypixel {
         this
     ).param("id", id).execute().thenApply { it.guild }
 
-    override fun guildByPlayer(playerUuid: UUID): CompletableFuture<out Guild> = EndpointRequest(
+    override fun guildByPlayer(playerUuid: String): CompletableFuture<out Guild> = EndpointRequest(
         HypixelEndpoint.GuildEndpoint,
         this
-    ).param("player", playerUuid.toString()).execute().thenApply { it.guild }
+    ).param("player", playerUuid).execute().thenApply { it.guild }
 
     override fun guildByName(guildName: String): CompletableFuture<out Guild> = EndpointRequest(
         HypixelEndpoint.GuildEndpoint,
         this
     ).param("name", guildName).execute().thenApply { it.guild }
 
-    override fun skyblockProfiles(uuid: UUID): CompletableFuture<Set<SkyblockProfile>> = EndpointRequest(
+    override fun skyblockProfiles(uuid: String): CompletableFuture<Set<SkyblockProfile>> = EndpointRequest(
         HypixelEndpoint.SkyblockProfilesEndpoint,
         this
-    ).param("uuid", uuid.toString()).execute().thenApply { it.profiles }
+    ).param("uuid", uuid).execute().thenApply { it.profiles }
 
     override fun skyblockProfile(profile: String): CompletableFuture<out SkyblockProfile> = EndpointRequest(
         HypixelEndpoint.SkyblockProfileEndpoint,

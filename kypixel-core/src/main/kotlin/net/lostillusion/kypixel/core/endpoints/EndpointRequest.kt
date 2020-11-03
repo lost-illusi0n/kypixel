@@ -53,7 +53,7 @@ class EndpointRequest<T>(private val endpoint: HypixelEndpoint<T>, private val k
     private val params: MutableMap<String, String> = mutableMapOf()
 
     init {
-        params["key"] = kypixel.token.toString()
+        params["key"] = kypixel.token
     }
 
     fun param(key: String, value: String) = apply {
