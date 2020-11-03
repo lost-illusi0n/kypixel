@@ -19,7 +19,7 @@ interface Kypixel {
          * @return the [Kypixel] client.
          */
         @JvmStatic
-        fun fromToken(token: UUID): Kypixel = ServiceLoader.load(KypixelProvider::class.java)
+        fun fromToken(token: String): Kypixel = ServiceLoader.load(KypixelProvider::class.java)
             .findFirst()
             .orElseThrow { IllegalStateException("Couldn't find implementation of KypixelProvider!") }
             .create(token)
@@ -38,7 +38,7 @@ interface Kypixel {
      * @param uuid the UUID of the player.
      * @return the response.
      */
-    fun status(uuid: UUID): CompletableFuture<out Session>
+    fun status(uuid: String): CompletableFuture<out Session>
 
     /**
      * Sends a request to the RecentGames endpoint.
@@ -46,7 +46,7 @@ interface Kypixel {
      * @param uuid the UUID of the player.
      * @return the response.
      */
-    fun recentGames(uuid: UUID): CompletableFuture<out RecentGames>
+    fun recentGames(uuid: String): CompletableFuture<out RecentGames>
 
     /**
      * Sends a request to the Player endpoint.
@@ -54,7 +54,7 @@ interface Kypixel {
      * @param uuid the UUID of the player.
      * @return the response.
      */
-    fun player(uuid: UUID): CompletableFuture<out Player>
+    fun player(uuid: String): CompletableFuture<out Player>
 
     /**
      * Sends a request to the PlayerCount endpoint.
@@ -77,7 +77,7 @@ interface Kypixel {
      * @param name the name of the guild.
      * @return the response.
      */
-    fun findGuild(name: String): CompletableFuture<out FindGuild>
+    fun findGuildByName(name: String): CompletableFuture<out FindGuild>
 
     /**
      * Sends a request to the FindGuild endpoint.
@@ -85,7 +85,7 @@ interface Kypixel {
      * @param uuid the uuid of the player.
      * @return the response.
      */
-    fun findGuild(uuid: UUID): CompletableFuture<out FindGuild>
+    fun findGuildByUuid(uuid: String): CompletableFuture<out FindGuild>
 
     /**
      * Sends a request to the Friends endpoint.
@@ -93,7 +93,7 @@ interface Kypixel {
      * @param uuid the uuid of the player.
      * @return the response.
      */
-    fun friends(uuid: UUID): CompletableFuture<out Friends>
+    fun friends(uuid: String): CompletableFuture<out Friends>
 
     /**
      * Sends a request to the GameCounts endpoint.
@@ -116,7 +116,7 @@ interface Kypixel {
      * @param playerUuid the uuid of the player.
      * @return the response.
      */
-    fun guildByPlayer(playerUuid: UUID): CompletableFuture<out Guild>
+    fun guildByPlayer(playerUuid: String): CompletableFuture<out Guild>
 
     /**
      * Sends a request to the Guild endpoint.
@@ -132,7 +132,7 @@ interface Kypixel {
      * @param uuid the uuid of the player.
      * @return the response.
      */
-    fun skyblockProfiles(uuid: UUID): CompletableFuture<Set<SkyblockProfile>>
+    fun skyblockProfiles(uuid: String): CompletableFuture<Set<SkyblockProfile>>
 
     /**
      * Sends a request to the Skyblock Profile endpoint.

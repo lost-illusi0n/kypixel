@@ -5,5 +5,5 @@ import net.lostillusion.kypixel.api.KypixelProvider
 import java.util.UUID
 
 class KypixelProviderImpl: KypixelProvider {
-    override fun create(token: UUID): Kypixel = KypixelImpl(token)
+    override fun create(token: String): Kypixel = KypixelImpl(token)
 }
