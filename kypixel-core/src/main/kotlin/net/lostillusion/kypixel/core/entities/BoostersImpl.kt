@@ -11,10 +11,9 @@ import java.util.Date
 data class BoostersImpl(
     override val boosters: Set<BoosterImpl>,
     override val boosterState: BoosterStateImpl
-): Boosters, Entity<BoostersImpl>
+): Boosters
 
-data class BoosterStateImpl(override val decrementing: Boolean) : BoosterState,
-    Entity<BoosterStateImpl>
+data class BoosterStateImpl(override val decrementing: Boolean) : BoosterState
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BoosterImpl(
@@ -25,4 +24,4 @@ data class BoosterImpl(
     override val length: Int,
     override val gameType: GameType,
     override val dateActivated: Date
-): Booster, Entity<BoosterImpl>
+): Booster

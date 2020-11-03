@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import net.lostillusion.kypixel.api.entities.GameType
 import net.lostillusion.kypixel.api.entities.Item
-import net.lostillusion.kypixel.core.entities.Entity
 import net.lostillusion.kypixel.core.deserializers.HypixelDtoDeserializer
 import net.lostillusion.kypixel.core.KypixelImpl
 import net.lostillusion.kypixel.core.deserializers.GameTypeDeserializer
@@ -79,5 +78,5 @@ class EndpointRequest<T>(private val endpoint: HypixelEndpoint<T>, private val k
 }
 
 class HypixelDto {
-    var entity: Entity<*> by Delegates.notNull()
+    var entity: Any by Delegates.notNull()
 }

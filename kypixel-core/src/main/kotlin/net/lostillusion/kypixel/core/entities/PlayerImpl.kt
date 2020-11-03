@@ -21,8 +21,8 @@ data class PlayerImpl(
     @JsonProperty("timePlaying") override val timePlayed: Int,
     override val uuid: String,
     override val newPackageRank: String
-) : Player, Entity<PlayerImpl>
+) : Player
 
 data class PlayerDao(
     val player: PlayerImpl
-): Entity<PlayerDao>
+)

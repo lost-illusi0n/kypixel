@@ -5,4 +5,4 @@ import net.lostillusion.kypixel.api.entities.PlayerCount
 
 data class PlayerCountImpl(
     @JsonProperty("playerCount") override val count: Int
-) : PlayerCount, Entity<PlayerCountImpl>
+) : PlayerCount
