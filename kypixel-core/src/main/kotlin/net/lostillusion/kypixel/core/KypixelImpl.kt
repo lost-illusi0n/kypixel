@@ -17,8 +17,8 @@ import java.util.regex.Pattern
 
 class KypixelImpl(val token: UUID): Kypixel {
     class ThreadPool {
-        val scheduledExecutor = Executors.newSingleThreadScheduledExecutor()!!
-        val executor = Executors.newSingleThreadExecutor()!!
+        val scheduledExecutor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+        val executor: ExecutorService = Executors.newSingleThreadExecutor()
     }
 
     private val threadPool = ThreadPool()
@@ -94,9 +94,49 @@ class KypixelImpl(val token: UUID): Kypixel {
         this
     ).param("name", guildName).execute().thenApply { it.guild }
 
+    override fun skyblockProfiles(uuid: UUID): CompletableFuture<Set<SkyblockProfile>> = EndpointRequest(
+        HypixelEndpoint.SkyblockProfilesEndpoint,
+        this
+    ).param("uuid", uuid.toString()).execute().thenApply { it.profiles }
+
+    override fun skyblockProfile(profile: String): CompletableFuture<out SkyblockProfile> = EndpointRequest(
+        HypixelEndpoint.SkyblockProfileEndpoint,
+        this
+    ).param("profile", profile).execute()
+
+    override fun skyblockNews(): CompletableFuture<Set<SkyblockNewsItem>> = EndpointRequest(
+        HypixelEndpoint.SkyblockNewsEndpoint,
+        this
+    ).execute().thenApply { it.items }
+
+    override fun skyblockBazaar(): CompletableFuture<out SkyblockBazaar> = EndpointRequest(
+        HypixelEndpoint.SkyblockBazaarEndpoint,
+        this
+    ).execute()
+
+    override fun skyblockAuctions(page: Int): CompletableFuture<out SkyblockAuctions> = EndpointRequest(
+        HypixelEndpoint.SkyblockAuctionsEndpoint,
+        this
+    ).execute()
+
+    override fun skyblockAuctionByUuid(auctionUuid: String): CompletableFuture<SkyblockAuction> = EndpointRequest(
+        HypixelEndpoint.SkyblockAuctionEndpoint,
+        this
+    ).param("uuid", auctionUuid).execute().thenApply { it.auctions.first() }
+
+    override fun skyblockAuctionByPlayer(playerId: String): CompletableFuture<List<SkyblockAuction>> = EndpointRequest(
+        HypixelEndpoint.SkyblockAuctionEndpoint,
+        this
+    ).param("player", playerId).execute().thenApply { it.auctions }
+
+    override fun skyblockAuctionByProfile(profileId: String): CompletableFuture<List<SkyblockAuction>> = EndpointRequest(
+            HypixelEndpoint.SkyblockAuctionEndpoint,
+            this
+    ).param("profile", profileId).execute().thenApply { it.auctions }
+
     private val uuidPattern = Pattern.compile("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})")
 
-    override fun uuidByName(username: String): CompletableFuture<UUID> {
+    override fun uuidByUsername(username: String): CompletableFuture<UUID> {
         val future = CompletableFuture<UUID>()
         client.newCall(Request.Builder().url("https://api.mojang.com/users/profiles/minecraft/$username").build()).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
