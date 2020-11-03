@@ -8,8 +8,8 @@ data class SessionImpl(
     override val gameType: GameType? = null,
     override val mode: String? = null,
     override val map: String? = null
-): Entity<SessionImpl>, Session
+): Session
 
 data class SessionDto(
     val session: SessionImpl
-): Entity<SessionDto>
+)

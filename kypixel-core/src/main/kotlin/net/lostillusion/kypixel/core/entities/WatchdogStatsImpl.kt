@@ -9,4 +9,4 @@ data class WatchdogStatsImpl(
     @JsonProperty("watchdog_rollingDaily") override val watchdogRollingDaily: Int,
     @JsonProperty("watchdog_total") override val watchdogTotal: Int,
     @JsonProperty("staff_total") override val staffTotal: Int
-): Entity<WatchdogStatsImpl>, WatchdogStats
+): WatchdogStats

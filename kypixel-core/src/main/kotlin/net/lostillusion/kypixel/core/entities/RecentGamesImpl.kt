@@ -7,7 +7,7 @@ import java.util.Date
 
 data class RecentGamesImpl(
     override val games: Set<GameImpl>
-): RecentGames, Entity<RecentGamesImpl>
+): RecentGames
 
 data class GameImpl(
     override val date: Date,
@@ -15,4 +15,4 @@ data class GameImpl(
     override val mode: String,
     override val map: String,
     override val ended: Date? = null
-): Game, Entity<GameImpl>
+): Game
