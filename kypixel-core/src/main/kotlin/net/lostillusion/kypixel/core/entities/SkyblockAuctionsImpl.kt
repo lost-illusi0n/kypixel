@@ -9,4 +9,4 @@ data class SkyblockAuctionsImpl(
     override val totalAuctions: Int,
     override val lastUpdated: Date,
     override val auctions: List<SkyblockAuctionImpl>
-): Entity<SkyblockAuctionsImpl>, SkyblockAuctions
+): SkyblockAuctions

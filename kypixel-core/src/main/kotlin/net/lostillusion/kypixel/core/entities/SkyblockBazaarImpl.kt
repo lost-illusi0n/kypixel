@@ -10,7 +10,7 @@ import java.util.Date
 data class SkyblockBazaarImpl(
     override val lastUpdated: Date,
     override val products: Map<String, SkyblockProductImpl>
-): Entity<SkyblockBazaarImpl>, SkyblockBazaar
+): SkyblockBazaar
 
 data class SkyblockProductImpl(
     @JsonProperty("product_id")
@@ -21,13 +21,13 @@ data class SkyblockProductImpl(
     override val buySummary: Set<SkyblockOrderSummaryImpl>,
     @JsonProperty("quick_status")
     override val quickStatus: SkyblockQuickStatusImpl
-): Entity<SkyblockProductImpl>, SkyblockProduct
+): SkyblockProduct
 
 data class SkyblockOrderSummaryImpl(
     override val amount: Int,
     override val pricePerUnit: Float,
     override val orders: Int
-): Entity<SkyblockOrderSummaryImpl>, SkyblockOrderSummary
+): SkyblockOrderSummary
 
 data class SkyblockQuickStatusImpl(
     override val productId: String,
@@ -39,4 +39,4 @@ data class SkyblockQuickStatusImpl(
     override val buyVolume: Int,
     override val buyMovingWeek: Int,
     override val buyOrders: Int
-): Entity<SkyblockQuickStatusImpl>, SkyblockQuickStatus
+): SkyblockQuickStatus

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
 import net.lostillusion.kypixel.core.exceptions.HypixelParsingException
 import net.lostillusion.kypixel.core.exceptions.HypixelException
-import net.lostillusion.kypixel.core.entities.Entity
 import net.lostillusion.kypixel.core.endpoints.HypixelDto
 import kotlin.jvm.Throws
 import kotlin.properties.Delegates
@@ -15,7 +14,7 @@ object HypixelDtoDeserializer: JsonDeserializer<HypixelDto>() {
     @Throws(HypixelException::class, HypixelParsingException::class)
     override fun deserialize(parser: JsonParser, ctxt: DeserializationContext): HypixelDto {
         val expected = ctxt.findInjectableValue("expected", null, null)
-        var entity: Entity<*> by Delegates.notNull()
+        var entity: Any by Delegates.notNull()
         while(!parser.isClosed) {
             val token = parser.nextToken()
             if(token == JsonToken.FIELD_NAME) {
@@ -23,7 +22,7 @@ object HypixelDtoDeserializer: JsonDeserializer<HypixelDto>() {
                 parser.nextToken()
                 if(name == "success" && parser.valueAsBoolean) {
                     parser.nextToken()
-                    entity = ctxt.readValue(parser, expected as Class<Entity<*>>)
+                    entity = ctxt.readValue(parser, expected as Class<*>)
                     break
                 }
                 else if(name == "success" && !parser.valueAsBoolean) continue

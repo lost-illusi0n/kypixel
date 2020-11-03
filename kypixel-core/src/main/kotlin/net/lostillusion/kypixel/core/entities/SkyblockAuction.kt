@@ -12,7 +12,7 @@ import java.util.Date
 
 data class SkyblockAuctionDto(
     val auctions: List<SkyblockAuctionImpl>
-): Entity<SkyblockAuctionDto>
+)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class SkyblockAuctionImpl(
@@ -39,7 +39,7 @@ data class SkyblockAuctionImpl(
     @JsonProperty("highest_bid_amount")
     override val highestBidAmount: Int,
     override val bids: List<SkyblockBidImpl>?
-): Entity<SkyblockAuctionImpl>, SkyblockAuction
+): SkyblockAuction
 
 data class SkyblockBidImpl(
     @JsonProperty("auction_id")
@@ -49,4 +49,4 @@ data class SkyblockBidImpl(
     override val profileId: String,
     override val amount: Int,
     override val timestamp: Date
-): Entity<SkyblockBidImpl>, SkyblockBid
+): SkyblockBid

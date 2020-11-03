@@ -11,7 +11,7 @@ import java.util.Date
 
 data class GuildDao(
     val guild: GuildImpl
-): Entity<GuildDao>
+)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GuildImpl(
@@ -33,7 +33,7 @@ data class GuildImpl(
     override val preferredGames: Set<GameType>,
     override val chatMute: Date,
     override val guildExpByGameType: Map<GameType, Int>
-): Guild, Entity<GuildImpl>
+): Guild
 
 data class GuildMemberImpl(
     override val uuid: String,
@@ -42,7 +42,7 @@ data class GuildMemberImpl(
     override val expHistory: Map<String, Int>,
     override val questParticipation: Int,
     override val mutedTill: Date? = null
-) : GuildMember, Entity<GuildMemberImpl>
+) : GuildMember
 
 data class GuildRankImpl(
     override val name: String,
@@ -50,4 +50,4 @@ data class GuildRankImpl(
     override val created: Date,
     override val priority: Int,
     override val tag: String? = null
-) : GuildRank, Entity<GuildRankImpl>
+) : GuildRank

@@ -13,7 +13,7 @@ import java.util.Date
 
 data class SkyblockProfilesDto(
     val profiles: Set<SkyblockProfileImpl>
-): Entity<SkyblockProfilesDto>
+)
 
 data class SkyblockProfileImpl(
     @JsonProperty("profile_id")
@@ -21,7 +21,7 @@ data class SkyblockProfileImpl(
     override val members: Map<String, SkyblockMemberImpl>,
     @JsonProperty("cute_name")
     override val cuteName: String
-): Entity<SkyblockProfileImpl>, SkyblockProfile
+): SkyblockProfile
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class SkyblockMemberImpl(
@@ -39,7 +39,7 @@ data class SkyblockMemberImpl(
     @JsonProperty("last_death")
     @JsonDeserialize(using = SkyblockTimestampDeserializer::class)
     override val lastDeath: Date
-): Entity<SkyblockMemberImpl>, SkyblockMember
+): SkyblockMember
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class QuestImpl(
@@ -48,7 +48,7 @@ data class QuestImpl(
     override val activatedAt: Date,
     @JsonProperty("completed_at")
     override val completedAt: Date
-): Entity<QuestImpl>, Quest
+): Quest
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class ObjectiveImpl(
@@ -56,7 +56,7 @@ data class ObjectiveImpl(
     override val progress: Int,
     @JsonProperty("completed_at")
     override val completedAt: Date
-): Entity<ObjectiveImpl>, Objective
+): Objective
 
 data class CoopInvitationImpl(
     override val timestamp: Date,
@@ -65,4 +65,4 @@ data class CoopInvitationImpl(
     override val confirmed: Boolean,
     @JsonProperty("confirmed_timestamp")
     override val confirmedTimestamp: Date
-): Entity<CoopInvitationImpl>, CoopInvitation
+): CoopInvitation
