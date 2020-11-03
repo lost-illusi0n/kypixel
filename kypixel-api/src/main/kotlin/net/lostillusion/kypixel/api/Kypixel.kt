@@ -127,12 +127,73 @@ interface Kypixel {
     fun guildByName(guildName: String): CompletableFuture<out Guild>
 
     /**
+     * Sends a request to the Skyblock Profiles endpoint.
+     *
+     * @param uuid the uuid of the player.
+     * @return the response.
+     */
+    fun skyblockProfiles(uuid: UUID): CompletableFuture<Set<SkyblockProfile>>
+
+    /**
+     * Sends a request to the Skyblock Profile endpoint.
+     *
+     * @param profile the id of the profile.
+     * @return the response.
+     */
+    fun skyblockProfile(profile: String): CompletableFuture<out SkyblockProfile>
+
+    /**
+     * Sends a request to the Skyblock News endpoint.
+     *
+     * @return the response.
+     */
+    fun skyblockNews(): CompletableFuture<Set<SkyblockNewsItem>>
+
+    /**
+     * Sends a request to the Skyblock Bazaar endpoint.
+     *
+     * @return the response.
+     */
+    fun skyblockBazaar(): CompletableFuture<out SkyblockBazaar>
+
+    /**
+     * Sends a request to the Skyblock Auctions endpoint.
+     *
+     * @param page the page to request as this endpoint is paginated, defaults to page 0
+     * @return the response.
+     */
+    fun skyblockAuctions(page: Int = 0): CompletableFuture<out SkyblockAuctions>
+
+    /**
+     * Sends a request to the Skyblock Auction endpoint.
+     *
+     * @param auctionUuid the specific auction you want to query.
+     * @return the response.
+     */
+    fun skyblockAuctionByUuid(auctionUuid: String): CompletableFuture<SkyblockAuction>
+
+    /**
+     * Sends a request to the Skyblock Auction endpoint.
+     *
+     * @param playerId the player you want to query auctions for.
+     * @return the response.
+     */
+    fun skyblockAuctionByPlayer(playerId: String): CompletableFuture<List<SkyblockAuction>>
+
+    /**
+     * Sends a request to the Skyblock Auction endpoint.
+     * @param profileId the profile you want to query auctions for.
+     * @return the response.
+     */
+    fun skyblockAuctionByProfile(profileId: String): CompletableFuture<List<SkyblockAuction>>
+
+    /**
      * Sends a request to Mojang's api to retrieve a UUID by username.
      *
      * @param username the username of the Minecraft account you want to get the UUID of.
      * @return the UUID.
      */
-    fun uuidByName(username: String): CompletableFuture<UUID>
+    fun uuidByUsername(username: String): CompletableFuture<UUID>
 
     /**
      * Disconnect and shut down all threads related to Kypixel.

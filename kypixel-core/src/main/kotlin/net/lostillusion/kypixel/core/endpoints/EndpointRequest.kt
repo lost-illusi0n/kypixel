@@ -1,13 +1,16 @@
 package net.lostillusion.kypixel.core.endpoints
 
 import com.fasterxml.jackson.databind.InjectableValues
+import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import net.lostillusion.kypixel.api.entities.GameType
+import net.lostillusion.kypixel.api.entities.Item
 import net.lostillusion.kypixel.core.entities.Entity
 import net.lostillusion.kypixel.core.deserializers.HypixelDtoDeserializer
 import net.lostillusion.kypixel.core.KypixelImpl
 import net.lostillusion.kypixel.core.deserializers.GameTypeDeserializer
+import net.lostillusion.kypixel.core.deserializers.ItemDeserializer
 import net.lostillusion.kypixel.core.deserializers.MinecraftColorDeserializer
 import net.lostillusion.kypixel.core.deserializers.TimestampDeserializer
 import okhttp3.OkHttpClient
@@ -34,7 +37,11 @@ class EndpointRequest<T>(private val endpoint: HypixelEndpoint<T>, private val k
             ).addDeserializer(
                 Date::class.java,
                 TimestampDeserializer
+            ).addDeserializer(
+                Item::class.java,
+                ItemDeserializer
             ))
+            .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
         private val client = OkHttpClient.Builder()
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
